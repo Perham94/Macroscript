@@ -43,7 +43,6 @@ namespace ConsoleApplication1
             } 
         }
         
-        
         public static void Main(string[] args)
         
         {
