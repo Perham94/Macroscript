@@ -5,6 +5,8 @@ namespace ConsoleApplication1
 {
     public class Keyboard
 {
+    
+    public static ushort getKey { get; set; }
     [Flags]
     public enum InputType
     {
@@ -14,8 +16,7 @@ namespace ConsoleApplication1
     }
 
     [Flags]
-    public enum KeyEventF
-    {
+    public enum KeyEventF {
         KeyDown = 0x0000,
         ExtendedKey = 0x0001,
         KeyUp = 0x0002,
@@ -23,15 +24,14 @@ namespace ConsoleApplication1
         Scancode = 0x0008,
     }
 
-    [DllImport("user32.dll", SetLastError = true)]
+    [DllImport("user32.dll")]
     private static extern uint SendInput(uint nInputs, Input[] pInputs, int cbSize);
 
     [DllImport("user32.dll")]
-    private static extern IntPtr GetMessageExtraInfo();
+    public static extern IntPtr GetMessageExtraInfo();
 
 
-    public enum DirectXKeyStrokes
-    {
+    public enum DirectXKeyStrokes {
         DIK_ESCAPE = 0x01,
         DIK_1 = 0x02,
         DIK_2 = 0x03,
@@ -183,6 +183,7 @@ namespace ConsoleApplication1
     
     public static void SendKey(DirectXKeyStrokes key, bool KeyUp, InputType inputType)
     {
+        
         uint flagtosend;
         if (KeyUp)
         {
@@ -193,14 +194,7 @@ namespace ConsoleApplication1
             flagtosend = (uint) (KeyEventF.KeyDown | KeyEventF.Scancode);
         }
 
-        Input[] inputs =
-        {
-            new Input
-            {
-                type = (int) inputType,
-                u = new InputUnion
-                {
-                    ki = new KeyboardInput
+        Input[] inputs = {new Input {type = (int) inputType, u = new InputUnion {ki = new KeyboardInput
                     {
                         wVk = 0,
                         wScan = (ushort) key,
@@ -215,8 +209,9 @@ namespace ConsoleApplication1
     }
 
 
-    public static void SendKey(ushort key, bool KeyUp, InputType inputType)
+    public static uint SendKey(ushort key, bool KeyUp, InputType inputType)
     {
+       
         uint flagtosend;
         if (KeyUp)
         {
@@ -227,14 +222,7 @@ namespace ConsoleApplication1
             flagtosend = (uint) (KeyEventF.KeyDown | KeyEventF.Scancode);
         }
 
-        Input[] inputs =
-        {
-            new Input
-            {
-                type = (int) inputType,
-                u = new InputUnion
-                {
-                    ki = new KeyboardInput
+        Input[] inputs = {new Input {type = (int) inputType, u = new InputUnion {ki = new KeyboardInput
                     {
                         wVk = 0,
                         wScan = key,
@@ -245,7 +233,7 @@ namespace ConsoleApplication1
             }
         };
 
-        SendInput((uint) inputs.Length, inputs, Marshal.SizeOf(typeof(Input)));
+        return SendInput((uint) inputs.Length, inputs, Marshal.SizeOf(typeof(Input)));
     }
 
     public struct Input
@@ -276,9 +264,9 @@ namespace ConsoleApplication1
     [StructLayout(LayoutKind.Sequential)]
     public struct KeyboardInput
     {
-        public ushort wVk;
-        public ushort wScan;
-        public uint dwFlags;
+        public ushort wVk { get; set; }
+        public ushort wScan { get; set; }
+        public uint dwFlags { get; set; }
         public readonly uint time;
         public IntPtr dwExtraInfo;
     }
