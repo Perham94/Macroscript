@@ -4,3 +4,6 @@ C:\Users\perha\RiderProjects\Macroscript\ConsoleApplication1\obj\Debug\ConsoleAp
 C:\Users\perha\RiderProjects\Macroscript\ConsoleApplication1\obj\Debug\ConsoleApplication1.csproj.CoreCompileInputs.cache
 C:\Users\perha\RiderProjects\Macroscript\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
 C:\Users\perha\RiderProjects\Macroscript\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\perha\RiderProjects\Macroscript\ConsoleApplication1\bin\Debug\WindowsInput.dll
+C:\Users\perha\RiderProjects\Macroscript\ConsoleApplication1\bin\Debug\WindowsInput.xml
+C:\Users\perha\RiderProjects\Macroscript\ConsoleApplication1\obj\Debug\ConsoleApplication1.csproj.CopyComplete
